@@ -5,22 +5,23 @@ class Genre < Super
   
   def initialize(name)
     @name = name
-    @all << selfsongs = []
+    @all << self
   end
   
-  def self.create(name)
-    instance = Genre.new(name)
-    instance.save
-    instance
+  def self.all
+    @@all
   end
   
-  def add_song(song)
-    song.genre = self if song.genre == nil
-    self.songs << song if self.songs.include?(song) == false
+  def new_song(name. artist)
+    Song.new(name, artist, self)
   end
   
-  def artists 
-    self.songs.collect {|song|song.artist}.uniq 
+  def songs 
+    Song.all.select {|song|song.genre == self} 
+  end
+  
+  def artists
+    songs.collect {|song| song.artist}
   end
 
 end
