@@ -1,10 +1,11 @@
 class Genre < Super
   
-  attr_accessor :songs 
+  attr_accessor :name, :song, :artist 
+  @@all = []
   
   def initialize(name)
     @name = name
-    @songs = []
+    @all << selfsongs = []
   end
   
   def self.create(name)
